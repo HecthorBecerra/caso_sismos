@@ -1,7 +1,8 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Random;
 
-//creacion menu
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     List<List<LecturaSismica>> lecturasSemanal = new ArrayList<>();
@@ -46,21 +47,42 @@ public class Menu {
         } while (opcion != '5');
     }
 
-
-
-
-    public static void ingresarDatos(){
+    public void ingresarDatos() {
+        Random random = new Random();
+        for (List<LecturaSismica> semana : lecturasSemanal) {
+            semana.clear();
+            for (int i = 0; i < 7; i++) {
+                double magnitud = random.nextDouble() * 9.9;
+                semana.add(new LecturaSismica(magnitud));
+            }
+        }
+        System.out.println("Datos ingresados exitosamente.");
     }
 
-    public static void mostrarMayorMagnitud(){
+    public void mostrarMayorMagnitud() {
 
     }
 
-    public static void contarSismos(){
+    public void contarSismos() {
 
     }
 
-    public static void enviarSMS(){
+    public void enviarSMS() {
+
+    }
+
+    public void mostrarSMS() {
+        System.out.println("Se detectó un sismo mayor a 7.0. Arranca.");
+    }
+
+    static class LecturaSismica {
+        private double magnitud;
+
+        public LecturaSismica(double magnitud) {
+            this.magnitud = magnitud;
+        }
 
     }
 }
+
+
