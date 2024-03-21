@@ -60,29 +60,52 @@ public class Menu {
     }
 
     public void mostrarMayorMagnitud() {
-
+        double mayorMagnitud = Double.MIN_VALUE;
+        for (List<LecturaSismica> semana : lecturasSemanal) {
+            for (LecturaSismica lectura : semana) {
+                if (lectura.obtenerMagnitud() > mayorMagnitud) {
+                    mayorMagnitud = lectura.obtenerMagnitud();
+                }
+            }
+        }
+        System.out.println("La mayor magnitud registrada es: " + mayorMagnitud);
     }
 
     public void contarSismos() {
-
+        int contador = 0;
+        for (List<LecturaSismica> semana : lecturasSemanal) {
+            for (LecturaSismica lectura : semana) {
+                if (lectura.obtenerMagnitud() >= 5.0) {
+                    contador++;
+                }
+            }
+        }
+        System.out.println("Cantidad de sismos mayores o iguales a 5.0: " + contador);
     }
 
     public void enviarSMS() {
-
+        for (List<LecturaSismica> semana : lecturasSemanal) {
+            for (LecturaSismica lectura : semana) {
+                if (lectura.obtenerMagnitud() >= 7.0) {
+                    mostrarSMS();
+                }
+            }
+        }
     }
 
-    public void mostrarSMS() {
-        System.out.println("Se detectó un sismo mayor a 7.0. Arranca.");
+    public static void mostrarSMS() {
+        System.out.println("Se detectó un sismo mayor a 7.0. Resguárdate.");
     }
 
-    static class LecturaSismica {
+    class LecturaSismica {
         private double magnitud;
 
         public LecturaSismica(double magnitud) {
             this.magnitud = magnitud;
         }
 
+        public double obtenerMagnitud() {
+            return magnitud;
+        }
     }
 }
-
-
