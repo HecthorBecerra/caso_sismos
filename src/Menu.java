@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//creacion menu
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     List<List<LecturaSismica>> lecturasSemanal = new ArrayList<>();
